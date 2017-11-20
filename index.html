@@ -150,6 +150,9 @@
             guesses = 12; 
             wins++;
             ResetGlobalVariables();
+            answerspaces.length = 0;
+            var htmlplaceempty=" ";
+            document.querySelector('#random-number').innerHTML= htmlplaceempty;
             // empty();
           };
         
@@ -209,7 +212,9 @@
             alert("Game Over!");
             guesses = 12;
             ResetGlobalVariables();
-            empty();
+            answerspaces.length= 0;
+            var htmlplaceempty=" ";
+            document.querySelector('#random-number').innerHTML= htmlplaceempty;
           };
 
 
