@@ -15,7 +15,9 @@
     <h1 class="text-center">90s Hangman!</h1>
     <div class="text-center">
       
-    <div id="wins"></div>
+    <div id="wins">
+      <p>Wins</p>
+    </div>
 
 
     <p>Current Word</p>
@@ -54,6 +56,7 @@
       // alert(computerchoice);
       // $("#current").text(computerchoice);
 
+      var wins = 0;
       var blankspaces = [];
       var answerspaces = [];
       var wordlength = computerchoice.length;
@@ -67,6 +70,15 @@
       $("#current").text(blankspaces);
       var htmlplace = "<p>Number of Guesses Remaining:</p>" + guesses;
         document.querySelector('#number').innerHTML= htmlplace;
+
+      var htmlplacetwo = "<p>Wins:</p>" + wins;
+        document.querySelector('#wins').innerHTML= htmlplacetwo;
+
+      // function empty() {
+      //     answerspaces.length = 0;
+      //     };
+
+
 
       function ResetGlobalVariables() {
           guesses = 12;
@@ -85,7 +97,13 @@
           $("#current").text(blankspaces);
           var htmlplace = "<p>Number of Guesses Remaining:</p>" + guesses;
           document.querySelector('#number').innerHTML= htmlplace;
+          var htmlplacetwo = "<p>Wins:</p>" + wins;
+          document.querySelector('#wins').innerHTML= htmlplacetwo;
+          // empty();
           }; 
+
+      
+
 
 
     // $(window).keypress(function(e) {
@@ -130,7 +148,9 @@
           if ( !blankspaces.includes('    _____   ')) {
             alert("You win!");
             guesses = 12; 
+            wins++;
             ResetGlobalVariables();
+            // empty();
           };
         
         };
@@ -178,15 +198,18 @@
    //   };
    // };
 
+        if (!answerspaces.includes(input)) {
         guesses = guesses - 1 
         console.log(guesses);
 
         var htmlplace = "<p>Number of Guesses Remaining:</p>" + guesses;
         document.querySelector('#number').innerHTML= htmlplace;
+        };
           if (guesses <= 0) {
             alert("Game Over!");
             guesses = 12;
             ResetGlobalVariables();
+            empty();
           };
 
 
@@ -212,6 +235,7 @@
         
         if ( guesses <= 0 || !blankspaces.includes('    _____   ')) {
           ResetGlobalVariables();
+          // empty();
           };
      });
 
