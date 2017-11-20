@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lottery Generator</title>
+  <!-- Added link to the jQuery Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Added a link to Bootstrap-->
+  <!-- <link rel="stylesheet" type="text/css" href="experiment.css">  -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="experiment.css"> 
+</head>
+<body>
+  <div class="jumbotron">
+    <h1 class="text-center">90s Hangman!</h1>
+    <div class="text-center">
+      
+    <div id="wins"></div>
+
+
+    <p>Current Word</p>
+    <div id="current">
+  </div>
+    <!-- <div id="currentnumber"> -->
+    <!-- </div> -->
+  <div id="number">
+    <p>Number of Guesses Remaining</p>
+  </div>
+
+  <div id="already">
+    <p>Letters Already Guessed: </p>
+  </div>
+      <!-- Here we have our button with id random-button -->
+    </div>
+  </div>
+  <!-- Here we have div called "random-number" where our random number will go -->
+  <h1 class="text-center" id="random-number"></h1>
+  <script type="text/javascript">
+
+    // var userchoices = [];
+    // var guesses = 12;
+    // var bands = ["spicegirls", "nsync", "britneyspears", "mariahcarey", "backstreetboys", "offspring", "redhotchillipeppers"];
+
+
+    $(document).ready(function() {
+      var guesses = 12;
+      var bands = ["spicegirls", "nsync", "britneyspears", "mariahcarey", "backstreetboys", "offspring", "redhotchillipeppers"];
+
+      //When random-button is clicked...
+      // for (var i=0; i<12; i++)
+      
+      var computerchoice = bands[Math.floor(Math.random() * bands.length)];
+      alert(computerchoice);
+      // alert(computerchoice);
+      // $("#current").text(computerchoice);
+
+      var blankspaces = [];
+      var answerspaces = [];
+      var wordlength = computerchoice.length;
+      for (var i=0; i < computerchoice.length; i++) {
+        blankspaces.push('    _____   ');
+      };
+    
+
+
+
+      $("#current").text(blankspaces);
+      var htmlplace = "<p>Number of Guesses Remaining:</p>" + guesses;
+        document.querySelector('#number').innerHTML= htmlplace;
+
+      function ResetGlobalVariables() {
+          guesses = 12;
+          bands = ["spicegirls", "nsync", "britneyspears", "mariahcarey", "backstreetboys", "offspring", "redhotchillipeppers"];
+
+          computerchoice = bands[Math.floor(Math.random() * bands.length)];
+          alert(computerchoice);
+      // alert(computerchoice);
+      // $("#current").text(computerchoice);
+          blankspaces = [];
+          answerspaces = [];
+          wordlength = computerchoice.length;
+          for (var i=0; i < computerchoice.length; i++) {
+          blankspaces.push('    _____   ');
+          };
+          $("#current").text(blankspaces);
+          var htmlplace = "<p>Number of Guesses Remaining:</p>" + guesses;
+          document.querySelector('#number').innerHTML= htmlplace;
+          }; 
+
+
+    // $(window).keypress(function(e) {
+    //   if (e.keyCode == 0 || e.keyCode == 32) {
+    //   console.log('Space pressed');
+    //   getItem();
+    // }
+    // });
+
+      $(document).keyup(function(e) {
+        // Create a string which will hold the lottery number
+        // var lottoNumber = "";
+        // $("#current").empty();
+        var input = String.fromCharCode(e.which).toLowerCase();
+        
+        // userchoices.push(input);
+
+        console.log(input);
+
+        
+
+// if not in array, or in string, then push an argument (you could do the whole not in index thing)
+
+        for (var i=0; i < computerchoice.length; i++) {
+          // var answerspaces = [];
+          if ( computerchoice.charAt(i) === input) {
+            // answerspaces.push(' ___ ');
+            // $("#currentnumber").text(answerspaces);
+            blankspaces[i]=input;
+            $("#current").text(blankspaces);
+
+          
+// js includes (call it on computer choice)
+
+          } else if ( !computerchoice.includes(input) && !answerspaces.includes(input)) {
+            answerspaces.push(input);
+            // $("#currentnumber").text(answerspaces);
+            $("#random-number").prepend(" " + input);
+
+          }
+
+          if ( !blankspaces.includes('    _____   ')) {
+            alert("You win!");
+            guesses = 12; 
+            ResetGlobalVariables();
+          };
+        
+        };
+
+      //   function ResetGlobalVariables() {
+      //     guesses = 12;
+      //     bands = ["spicegirls", "nsync", "britneyspears", "mariahcarey", "backstreetboys", "offspring", "redhotchillipeppers"];
+
+      //     computerchoice = bands[Math.floor(Math.random() * bands.length)];
+      //     alert(computerchoice);
+      // // alert(computerchoice);
+      // // $("#current").text(computerchoice);
+      //     blankspaces = [];
+      //     answerspaces = [];
+      //     wordlength = computerchoice.length;
+      //     for (var i=0; i < computerchoice.length; i++) {
+      //     blankspaces.push('    _____   ');
+      //     };
+      //     $("#current").text(blankspaces);
+      //     var htmlplace = "<p>Number of Guesses Remaining:</p>" + guesses;
+      //     document.querySelector('#number').innerHTML= htmlplace;
+      //     };  // var x = computerchoice.charAt();
+        // if ( input === x) {
+        //     blankspaces[i] = x;
+        //   } else {
+        //     blankspaces[i] = '    _____   ';
+        //   }
+        // }
+
+        // if (input == "p" && input == "s") {
+        //   var htmlslots = "s p ___ ___ ___ ___ ___ ___ ___ s";
+        //   $("#slots").text(htmlslots);
+        // };
+
+        // if (input =="s") {
+        //   var htmlslots = "s ___ ___ ___ ___ ___ ___ ___ ___ s";
+        //   $("#slots").text(htmlslots);
+        // };
+
+       // for (var i=0 i < computerchoice.length; i++) {
+
+       // if ( computerchoice.charAt(i) != input) {
+
+       // $("#random-number").prepend(" " + input);
+   //   };
+   // };
+
+        guesses = guesses - 1 
+        console.log(guesses);
+
+        var htmlplace = "<p>Number of Guesses Remaining:</p>" + guesses;
+        document.querySelector('#number').innerHTML= htmlplace;
+          if (guesses <= 0) {
+            alert("Game Over!");
+            guesses = 12;
+            ResetGlobalVariables();
+          };
+
+
+        // var ResetGlobalVariables();
+      //   function ResetGlobalVariables() {
+      //     guesses = 12;
+      //     bands = ["spicegirls", "nsync", "britneyspears", "mariahcarey", "backstreetboys", "offspring", "redhotchillipeppers"];
+
+      //     computerchoice = bands[Math.floor(Math.random() * bands.length)];
+      //     alert(computerchoice);
+      // // alert(computerchoice);
+      // // $("#current").text(computerchoice);
+      //     blankspaces = [];
+      //     answerspaces = [];
+      //     wordlength = computerchoice.length;
+      //     for (var i=0; i < computerchoice.length; i++) {
+      //     blankspaces.push('    _____   ');
+      //     };
+      //     $("#current").text(blankspaces);
+      //     var htmlplace = "<p>Number of Guesses Remaining:</p>" + guesses;
+      //     document.querySelector('#number').innerHTML= htmlplace;
+      //     };
+        
+        if ( guesses <= 0 || !blankspaces.includes('    _____   ')) {
+          ResetGlobalVariables();
+          };
+     });
+
+      // for (var j=0; j<12; j++) {
+        // f$('#already').text(userchoices);
+      
+
+    });
+
+
+        // $("#already").text(input);
+
+        // var newdiv = document.createElement("div");
+        // newDiv.innerHTML = 
+        // Then initiate a loop to generate 9 separate numbers
+        // for (var i = 0; i < 9; i++) {
+          // For each iteration, generate a new random number between 1 and 9.
+          // var random = Math.floor(Math.random() * 9) + 1;
+          // Take this number and then add it to the rest of the string.
+          // In essence, we are iteratively building a string of numbers. (e.g. First: 1, Second: 13, Third: 135, etc.)
+          // lottoNumber = random + lottoNumber;
+        
+        // Once we have our final lotto number, we'll prepend it to the top of our random-number div.
+        // $("#already").prepend("<br><hr>" + input);
+     
+  </script>
+</body>
+</html>

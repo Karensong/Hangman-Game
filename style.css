@@ -1,0 +1,13 @@
+.jumbotron {
+	background-color: pink;
+	color: black; 
+}
+
+#wins,
+#current, 
+#number, 
+#already {
+	font-size: 24;
+	font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+	margin-top: 10px;
+}
