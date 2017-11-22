@@ -151,6 +151,7 @@
             alert("You win!");
             guesses = 12; 
             wins++;
+            answerspaces = [];
             ResetGlobalVariables();
             $(answerspaces).empty();
             answerspaces.length = 0;
@@ -206,6 +207,7 @@
    // };
 
         if (!answerspaces.includes(input)) {
+          console.log('this needs to not run when the game ends');
         guesses = guesses - 1 
         console.log(guesses);
 
@@ -215,6 +217,7 @@
           if (guesses <= 0) {
             alert("Game Over!");
             guesses = 12;
+            answerspaces = [];
             ResetGlobalVariables();
             $(answerspaces).empty();
             answerspaces.length= 0;
