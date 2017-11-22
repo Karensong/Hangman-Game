@@ -45,6 +45,14 @@
 
 
     $(document).ready(function() {
+      // var audioElement = document.createElement("audio");
+      // audioElement.setAttribute("src", "Assets/captainplanet24.mp3");
+      // // Theme Button
+      // $(".theme-button").on("click", function() {
+      //   audioElement.play();
+      // });
+
+
       var guesses = 12;
       var bands = ["spicegirls", "nsync", "britneyspears", "mariahcarey", "backstreetboys", "offspring", "redhotchillipeppers"];
 
@@ -81,13 +89,14 @@
 
 
       function ResetGlobalVariables() {
+          answerspaces = [];
           $("#random-number").empty();
           $(answerspaces).empty();
           guesses = 12;
           bands = ["spicegirls", "nsync", "britneyspears", "mariahcarey", "backstreetboys", "offspring", "redhotchillipeppers"];
 
           computerchoice = bands[Math.floor(Math.random() * bands.length)];
-          alert(computerchoice);
+          // alert(computerchoice);
       // alert(computerchoice);
       // $("#current").text(computerchoice);
           blankspaces = [];
