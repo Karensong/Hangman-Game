@@ -81,6 +81,8 @@
 
 
       function ResetGlobalVariables() {
+          $("#random-number").empty();
+          $(answerspaces).empty();
           guesses = 12;
           bands = ["spicegirls", "nsync", "britneyspears", "mariahcarey", "backstreetboys", "offspring", "redhotchillipeppers"];
 
@@ -150,9 +152,11 @@
             guesses = 12; 
             wins++;
             ResetGlobalVariables();
+            $(answerspaces).empty();
             answerspaces.length = 0;
             var htmlplaceempty=" ";
             document.querySelector('#random-number').innerHTML= htmlplaceempty;
+            $("#random-number").empty();
             // empty();
           };
         
@@ -212,9 +216,11 @@
             alert("Game Over!");
             guesses = 12;
             ResetGlobalVariables();
+            $(answerspaces).empty();
             answerspaces.length= 0;
             var htmlplaceempty=" ";
             document.querySelector('#random-number').innerHTML= htmlplaceempty;
+            $("#random-number").empty();
           };
 
 
@@ -240,6 +246,8 @@
         
         if ( guesses <= 0 || !blankspaces.includes('    _____   ')) {
           ResetGlobalVariables();
+          $(answerspaces).empty();
+          $("#random-number").empty();
           // empty();
           };
      });
